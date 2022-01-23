@@ -40,11 +40,14 @@ INSTALLED_APPS = [
     # Componentes agregados
     'primerComponente',
     'loginComponente',
+    'registerUser',
+  
     # Librerias agregadas al proyecto 
       'rest_framework',
       'rest_framework.authtoken',
 
 ]
+
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES':('rest_framework.permissions.IsAuthenticated',),

@@ -30,8 +30,8 @@ router.register(r'users', UserViewSet)
 # 1.4 Agregamos los los urls_hijos al url_padre de los componentes creados
 urlpatterns = [
     path('', include(router.urls)),
+    re_path(r'^api/v1/registerUser', include('registerUser.urls')),
     re_path(r'^api/v1/login', include('loginComponente.urls')),
     re_path(r'^api/v1/primerComponente', include('primerComponente.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-
 ]

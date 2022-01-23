@@ -1,6 +1,3 @@
-from multiprocessing import context
-from django.http import response
-from django.shortcuts import render
 
 # Recursos de rest-framework
 from rest_framework.authtoken.views import ObtainAuthToken
