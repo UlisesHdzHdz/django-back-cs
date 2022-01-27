@@ -1,17 +1,32 @@
 # Ambientacion de back Django
 
-## Instalacion del recursos de restframework librerias
-````bash
+## Instalación del recursos de restframework librerias
+
+```bash
 pip install djangorestframework
-````
-````bash
-pip install markdown 
-````
-````bash
-pip install django-filter 
-````
+```
+
+```bash
+pip install markdown
+```
+
+```bash
+pip install django-filter
+```
 
 ## Agragar la librerias a INSTALLED_APPS EN settings
-````bash
+
+```bash
 'rest_framework',
-````
+```
+
+## Instalación python-dotenv para ocultar credenciales e importamos en settings
+
+```bash
+pip install python-dotenv
+```
+
+```bash
+import dotenv
+import os
+```

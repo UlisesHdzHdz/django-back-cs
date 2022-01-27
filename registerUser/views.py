@@ -15,7 +15,6 @@ class SaveRegister(ObtainAuthToken, APIView):
         serializer = registerUserSerializer(queryset, many=True)
         return Response(serializer.data)
 
-
     def post(self, request, format=None):
         serializer = registerUserSerializer(data=request.data)
         if serializer.is_valid():
@@ -24,4 +23,4 @@ class SaveRegister(ObtainAuthToken, APIView):
             token, created = Token.objects.get_or_create(user=user)
             return Response(datas, status=status.HTTP_201_CREATED)
         else:
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUES)
