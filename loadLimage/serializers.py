@@ -1,9 +1,9 @@
 from rest_framework import routers, serializers, viewsets
 # Importacion de modelos
-from loadLimage.models import imagenTabla
+from loadLimage.models import imagentabla
 
 
-class imagenTablaSerializer(serializers.ModelSerializer):
+class imagentablaserializer(serializers.ModelSerializer):
     class Meta:
-        model = imagenTabla
+        model = imagentabla
         fields = ('id', 'name_img', 'url_img', 'format_img')

@@ -8,85 +8,80 @@ from rest_framework.response import Response
 from rest_framework import status
 import json
 # Importacion de modelos
-from primerComponente.models import primerTabla
+from primerComponente.models import primertabla
 
 # Importaciones de serializadores
-from primerComponente.serializers import primerTablaSerializer
+from primerComponente.serializers import primertablaserializer
 
 # Create your views here.
 
 
-class primerTablaList(APIView):
+class primertablalist(APIView):
     def jsonList(self, message, data, status):
-        structJ = {"messages": message, "pay_load": data, "status": status}
-        contenido = json.dumps(structJ)
-        responseOk = json.loads(contenido)
-        return responseOk
+        jsonok = {"messages": message, "pay_load": data, "status": status}
+        contenido = json.dumps(jsonok)
+        responseok = json.loads(contenido)
+        return responseok
 
     # Metodo para obtener la lista de registro
     def get(self, request, format=None):
-        queryset = primerTabla.objects.all()
-        serializer = primerTablaSerializer(
+        queryset = primertabla.objects.all()
+        serializer = primertablaserializer(
             queryset, many=True, context={'request': request})
-        # return Response(serializer.data)
-        responseOk = self.jsonList(
+        responseok = self.jsonList(
             "succes", serializer.data, status.HTTP_200_OK)
-        return Response(responseOk)
+        return Response(responseok)
 
     # Metodo para crear un nuevo registro
     def post(self, request, format=None):
-        serializer = primerTablaSerializer(data=request.data)
+        serializer = primertablaserializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
-            datas = serializer.data
-            # return Response(datas, status=status.HTTP_201_CREATED)
-            responseOk = self.jsonList(
+
+            responseok = self.jsonList(
                 "succes", serializer.data, status.HTTP_201_CREATED)
-            return Response(responseOk)
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        responseOk = self.jsonList(
+            return Response(responseok)
+
+        responseok = self.jsonList(
             "error", serializer.errors, status.HTTP_400_BAD_REQUEST)
-        return Response(responseOk)
+        return Response(responseok)
 
 
-class primerTablaDetail(APIView):
+class primertabladetail(APIView):
     def jsonList2(self, message, data, status):
-        structJ = {"messages": message, "pay_load": data, "status": status}
-        contenido = json.dumps(structJ)
-        responseOk = json.loads(contenido)
-        return responseOk
+        jsonok = {"messages": message, "pay_load": data, "status": status}
+        contenido = json.dumps(jsonok)
+        responseok = json.loads(contenido)
+        return responseok
 
     # Metodo para consultar el id y me retorne si exite o no existe
     def get_object(self, pk):
         try:
-            return primerTabla.objects.get(pk=pk)
-        except primerTabla.DoesNotExist:
+            return primertabla.objects.get(pk=pk)
+        except primertabla.DoesNotExist:
             return 0
 
     # Metodo para consultar el id y retornar los valores y sus campos
     def get(self, request, pk, format=None):
         print("id de la consulta : "+pk)
-        idResponse = self.get_object(pk)
-        if idResponse != 0:
-            idResponse = primerTablaSerializer(idResponse)
-            # return Response(idResponse.data, status=status.HTTP_200_OK)
-            responseOk = self.jsonList2(
-                "succes", idResponse.data, status.HTTP_200_OK)
-            return Response(responseOk)
+        idresponse = self.get_object(pk)
+        if idresponse != 0:
+            idresponse = primertablaserializer(idresponse)
+            responseok = self.jsonList2(
+                "succes", idresponse.data, status.HTTP_200_OK)
+            return Response(responseok)
         return Response("no hay datos aaaa", status=status.HTTP_400_BAD_REQUEST)
 
     # Metodo para consultar el id y actualizar los valores de sus campos
 
     def put(self, request, pk, format=None):
-        idResponse = self.get_object(pk)
-        serializer = primerTablaSerializer(idResponse, data=request.data)
+        idresponse = self.get_object(pk)
+        serializer = primertablaserializer(idresponse, data=request.data)
         if serializer.is_valid():
             serializer.save()
-            datas = serializer.data
-            # return Response(datas, status=status.HTTP_200_OK)
-            responseOk = self.jsonList2(
+            responseok = self.jsonList2(
                 "succes", serializer.data, status.HTTP_200_OK)
-            return Response(responseOk)
+            return Response(responseok)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # Metodo para consultar id y eliminar el registro

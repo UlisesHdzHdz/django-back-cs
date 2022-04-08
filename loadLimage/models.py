@@ -4,7 +4,7 @@ from django.utils import timezone
 # Create your models here.
 
 
-class imagenTabla(models.Model):
+class imagentabla(models.Model):
     name_img = models.CharField(max_length=50, null=False)
     url_img = models.ImageField(upload_to="img", null=True)
     format_img =models.CharField(max_length=50, null=False)
